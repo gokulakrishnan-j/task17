@@ -23,7 +23,7 @@ var navigate=useNavigate()
   var handledelete=(i)=>{
     var deleteuser=[...props.data.userdata]
     deleteuser.splice(i,1)
-   if (window.confirm("ARE YOU SURE TO DELETE THIS DATA PERMANENTALY")==true){ 
+   if (window.confirm("ARE YOU SURE TO DELETE THIS DATA PERMANENTALY")===true){ 
       props.data.setuserData(deleteuser)
     }
      else{

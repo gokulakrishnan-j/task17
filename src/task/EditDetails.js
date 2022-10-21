@@ -7,19 +7,23 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import{useParams,useNavigate} from 'react-router-dom'
 
 function EditDetails(props) {
-    var [name,setname]=useState()
-    var [age,setage]=useState()
-    var [dob,setdob]=useState()
-    var [standard,setStandard]=useState()
+    var [name,setname]=useState(null)
+    var [age,setage]=useState(null)
+    var [dob,setdob]=useState(null)
+    var [standard,setStandard]=useState(null)
   
     var params=useParams()
     var navigate=useNavigate()
-  useEffect(()=>{
-    setname(props.data.userdata[params.id].name)
-    setage(props.data.userdata[params.id].age)
-    setdob(props.data.userdata[params.id].dob)
-    setStandard(props.data.userdata[params.id].standard)
-  },[])
+    useEffect(()=>{
+     
+ setname(props.data.userdata[params.id].name)
+ setage(props.data.userdata[params.id].age)
+ setdob(props.data.userdata[params.id].dob)
+ setStandard(props.data.userdata[params.id].standard)
+     
+      
+}, [])
+
     var handlesubmit=()=>{
       var newdata={name,age,dob,standard}
       var editusers=[...props.data.userdata]
@@ -40,16 +44,16 @@ function EditDetails(props) {
         autoComplete="off"
       >
         <div>
-        <TextField id="outlined-basic" value={name}  sx={{width:"50vw"}} onChange={(event)=>setname(event.target.value)} label="Name" variant="outlined" />
+        <TextField id="outlined-basic" value= {name ?name:""}  sx={{width:"50vw"}} onChange={(event)=>setname(event.target.value)} label="Name" variant="outlined" />
         </div>
         <div>
-        <TextField id="outlined-basic" value={age}  sx={{width:"50vw"}} onChange={(event)=>setage(event.target.value)} label="Age" variant="outlined" />
+        <TextField id="outlined-basic" value= {age ?age:""}  sx={{width:"50vw"}} onChange={(event)=>setage(event.target.value)} label="Age" variant="outlined" />
         </div>
         <div>
-        <TextField id="outlined-basic" value={dob}  sx={{width:"50vw"}} onChange={(event)=>setdob(event.target.value)} label="Date Of Birth" variant="outlined" />
+        <TextField id="outlined-basic" value= {dob ?dob:""}   sx={{width:"50vw"}} onChange={(event)=>setdob(event.target.value)} label="Date Of Birth" variant="outlined" />
         </div>
         <div>
-        <TextField id="outlined-basic" value={standard}  sx={{width:"50vw"}} onChange={(event)=>setStandard(event.target.value)} label="Standard" variant="outlined" />
+        <TextField id="outlined-basic" value= {standard ?standard:""}  sx={{width:"50vw"}} onChange={(event)=>setStandard(event.target.value)} label="Standard" variant="outlined" />
         </div>
         <Button  variant="contained" onClick={()=>handlesubmit()} >SAVE</Button>
       </Box>
