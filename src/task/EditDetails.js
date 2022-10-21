@@ -7,22 +7,26 @@ import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import{useParams,useNavigate} from 'react-router-dom'
 
 function EditDetails(props) {
+  let params=useParams();
+  let navigate =useNavigate();
     var [name,setname]=useState(null)
     var [age,setage]=useState(null)
     var [dob,setdob]=useState(null)
     var [standard,setStandard]=useState(null)
+   
+     
+ useEffect(()=>{
   
-    var params=useParams()
-    var navigate=useNavigate()
-    useEffect(()=>{
-     
- setname(props.data.userdata[params.id].name)
- setage(props.data.userdata[params.id].age)
- setdob(props.data.userdata[params.id].dob)
- setStandard(props.data.userdata[params.id].standard)
-     
+  setname(props.data.userdata[params.id].name)
+  setage(props.data.userdata[params.id].age)
+  setdob(props.data.userdata[params.id].dob)
+  setStandard(props.data.userdata[params.id].standard)
+
+ },[])
       
-}, [])
+
+
+
 
     var handlesubmit=()=>{
       var newdata={name,age,dob,standard}
@@ -55,7 +59,10 @@ function EditDetails(props) {
         <div>
         <TextField id="outlined-basic" value= {standard ?standard:""}  sx={{width:"50vw"}} onChange={(event)=>setStandard(event.target.value)} label="Standard" variant="outlined" />
         </div>
-        <Button  variant="contained" onClick={()=>handlesubmit()} >SAVE</Button>
+        <Button  variant="contained" onClick={()=>{
+        handlesubmit()
+        }
+        } >SAVE</Button>
       </Box>
       <Button variant="outlined"  sx={{color:"black", margin:"16px"}} onClick={()=>navigate(-1)} startIcon={<KeyboardBackspaceIcon />}>
   Back
